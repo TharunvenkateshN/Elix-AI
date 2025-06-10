@@ -1,13 +1,339 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ELIX Web App | Download now</title>
+  <link rel="icon" href="images/elix_logo.jpg" type="image/jpeg">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0d0d0d;
+      color: #fff;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    header img {
+      height: 100px;
+    }
+
+    header h1 {
+      color: #ff2c2c;
+      margin-top: 1rem;
+      font-size: 2rem;
+    }
+
+    nav {
+      background-color: #ff2c2c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+
+    nav .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    nav p {
+      color: gold;
+      font-style: italic;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    nav a,
+    .nav-button {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.5rem 1.5rem;
+      transition: background-color 0.3s;
+      border-radius: 6px;
+    }
+
+    nav a:hover,
+    .nav-button:hover {
+      background-color: black;
+    }
+
+    .nav-button {
+      background-color: white;
+      color: #ff2c2c;
+      border: none;
+      cursor: pointer;
+    }
+
+    .nav-button:hover {
+      background-color: black;
+      color: gold;
+    }
+
+    .circle-logo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #333;
+      box-shadow: 0 0 10px #ff2c2c;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin: 0 auto;
+    }
+
+    .circle-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .circle-logo:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 10px gold;
+    }
+
+    .mission-section {
+      padding: 2rem;
+      background-color: #1a1a1a;
+      text-align: center;
+    }
+
+    .mission-box {
+      border: 1px solid #ff2c2c;
+      padding: 2rem;
+      border-radius: 10px;
+      background-color: #111;
+      max-width: 800px;
+      margin: 2rem auto;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .mission-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 15px #ff2c2c;
+    }
+
+    .mission-box h2 {
+      color: #ff2c2c;
+    }
+
+    .features-section {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .feature {
+      background-color: #1a1a1a;
+      border: 1px solid #ff2c2c;
+      padding: 1rem;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 10px #ff2c2c;
+    }
+
+    .feature h3 {
+      color: #ff2c2c;
+    }
+
+    .download-section {
+      text-align: center;
+      margin: 3rem 0;
+    }
+
+    .download-button {
+      background-color: #ff2c2c;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .download-button:hover {
+      background-color: #cc0000;
+      transform: scale(1.05);
+      color: gold;
+    }
+
+    .snapshots-section,
+    .video-section {
+      padding: 2rem;
+      text-align: center;
+      background-color: #1a1a1a;
+    }
+
+    .snapshots-section h2,
+    .video-section h2 {
+      color: #ff2c2c;
+      margin-bottom: 1.5rem;
+    }
+
+    .snapshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .snapshot-grid img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ff2c2c;
+      transition: transform 0.3s;
+    }
+
+    .snapshot-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    .video-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .video-item {
+      text-align: center;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    .video-item video {
+      width: 100%;
+      border: 2px solid #ff2c2c;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #ff2c2c;
+    }
+
+    .video-caption {
+      margin-top: 0.5rem;
+      color: white;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.5rem;
+      }
+
+      .nav-button {
+        width: 100%;
+        margin-top: 0.5rem;
+      }
+
+      header h1 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#mission">Mission</a>
+      <a href="#elix">ELIX</a>
+      
+    </div>
+    <button class="nav-button" onclick="window.location.href='downloads/elix-windows-installer.exe'">Download Now</button>
+  </nav>
+
+  <header>
+    <div class="circle-logo">
+      <img src="images/elix_logo.jpg" alt="ELIX Logo" />
+    </div>
+    <h1>ELIX: Your Executive Learning Interface eXpert</h1>
+  </header>
+
+  <section class="mission-section" id="mission">
+    <div class="mission-box">
+      <h2>Our Mission</h2>
+      <p>
+        ELIX is not just an assistant — it's your dream digital colleague. It listens when you speak, understands what you mean, and executes commands instantly.
+      </p>
+      <p>
+        Our goal is to create a context-aware, always-available digital interface that helps you stay productive, focused, and ahead in your daily tasks.
+      </p>
+    </div>
+  </section>
+
+  <section class="features-section" id="features">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <!-- Features... (unchanged) -->
+    </div>
+  </section>
+
+  <section class="snapshots-section" id="elix">
+    <h2>Snapshots of ELIX</h2>
+    <div class="snapshot-grid">
+      <img src="images/elix1.jpg" alt="ELIX UI Snapshot 1">
+      <img src="images/elix2.jpg" alt="ELIX UI Snapshot 2">
+      <img src="images/elix3.jpg" alt="ELIX UI Snapshot 3">
+    </div>
+  </section>
+
+  <section class="video-section">
+    <h2>Demo Clips</h2>
+    <div class="video-container">
+      <div class="video-item">
+        <video controls>
+          <source src="images/elix_vid1.mp4" type="video/mp4">
+        </video>
+        <p class="video-caption">Voice Command Navigation</p>
+      </div>
+      <div class="video-item">
+        <video controls>
+          <source src="images/elix_vid2.mp4" type="video/mp4">
+        </video>
+        <p class="video-caption">Task Automation</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="download-section">
+    <button class="download-button" onclick="window.location.href='downloads/elix-windows-installer.exe'">
+      Download for Windows
+    </button>
+  </section>
+
+</body>
 </html>
